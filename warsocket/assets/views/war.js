@@ -1,0 +1,325 @@
+/**
+ * Created by Steven Burns on 5/5/16.
+ */
+jQuery(document).ready(function() {
+    getOpenGames();
+    pageData.activeGame = 0;
+    io.socket.on('games', function (resData) {
+        if (resData.verb == 'updated') {
+            getOpenGames();
+            if (resData.data.status == 'starting' && resData.data.player1 == pageData.userID){
+                pageData.activeGame = resData.data;
+                pageData.activeGame.id = resData.id;
+                pageData.player1 = pageData.userData.name;
+                pageData.player2 = resData.data.player2Name;
+                nextCard();
+            }
+
+        }
+        if (resData.data.status == 'playing' && pageData.activeGame.id == resData.id){
+            //flip Player2 Card
+            if ($('.isopponent').find('.cardf').hasClass('flipped')){
+                $('.isopponent').find('.cardf').removeClass('flipped');
+            } else {
+                $('.isopponent').find('.cardf').addClass('flipped');
+            }
+            checkScore();
+            //nextCard(resData.data.play1deck,resData.data.play2deck);
+        }
+        //console.log(resData);
+
+    });
+    io.socket.on('games', function (resData) {
+        if (resData.verb == 'created') {
+            getOpenGames();
+            //console.log(resData);
+        }
+
+    });
+});
+
+function checkScore(){
+    //Check if both cards are flipped
+    if ($('.isopponent').find('.cardf').hasClass('flipped') && $('.isplayer').find('.cardf').hasClass('flipped')){
+        //Get Winner
+        var classList = $('.isopponent').find('.cardf').find('.back').attr('class').split(/\s+/);
+        $.each(classList, function(index, item) {
+            if (item != 'face' && item != 'back' && item != 'card') {
+                var results1 = item.split("_");
+                pageData.opponentScore = results1[1];
+                console.log('opponent Card: '+item);
+            }
+        });
+        var classList = $('.isplayer').find('.cardf').find('.back').attr('class').split(/\s+/);
+        $.each(classList, function(index, item) {
+            if (item != 'face' && item != 'back' && item != 'card') {
+                var results2 = item.split("_");
+                pageData.playerScore = results2[1];
+                console.log('player Card: '+item);
+            }
+        });
+        if (parseInt(pageData.opponentScore)>parseInt(pageData.playerScore)){
+            //opponent Wins
+            $('.isplayer').css('opacity','.2');
+            recordScore('them');
+
+
+        } else if (parseInt(pageData.playerScore)>parseInt(pageData.opponentScore)){
+            //player Wins
+            $('.isopponent').css('opacity','.2');
+            recordScore('me');
+        } else {
+            //Tie
+            recordScore('tie');
+        }
+    } else {
+        //Move along Quietly
+    }
+}
+function recordScore(winner){
+    if (winner == 'me'){
+        if (pageData.mydeckID == 1){
+            pageData.activeGame.play1deck.push(pageData.activeGame.play2deck[0]);
+            var length = pageData.activeGame.play2deck.length;
+            pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+
+
+            pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
+            var length = pageData.activeGame.play1deck.length;
+            pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+
+
+        } else {
+            pageData.activeGame.play2deck.push(pageData.activeGame.play1deck[0]);
+            var length = pageData.activeGame.play1deck.length;
+            pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+
+            pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
+            var length = pageData.activeGame.play2deck.length;
+            pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+        }
+
+    } else if (winner == 'them') {
+        if (pageData.mydeckID == 1){
+            pageData.activeGame.play2deck.push(pageData.activeGame.play1deck[0]);
+            var length = pageData.activeGame.play1deck.length;
+            pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+
+            pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
+            var length = pageData.activeGame.play2deck.length;
+            pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+        } else {
+            pageData.activeGame.play1deck.push(pageData.activeGame.play2deck[0]);
+            var length = pageData.activeGame.play2deck.length;
+            pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+
+            pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
+            var length = pageData.activeGame.play1deck.length;
+            pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+        }
+    } else {
+        pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
+        var length = pageData.activeGame.play1deck.length;
+        pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+        pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
+        var length = pageData.activeGame.play2deck.length;
+        pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+    }
+
+
+    setTimeout("nextCard()",1000);
+}
+function whichDeck(){
+    if (pageData.activeGame.player1 == pageData.userID){
+        pageData.mydeckID = 1;
+        pageData.mydeck = pageData.activeGame.play1deck;
+        pageData.theirdeck = pageData.activeGame.play2deck;
+    } else {
+        pageData.mydeckID = 2;
+        pageData.mydeck = pageData.activeGame.play2deck;
+        pageData.theirdeck = pageData.activeGame.play1deck;
+    }
+}
+
+$('#hostGame').click(function(){
+    hostGame();
+});
+
+function getOpenGames(){
+    io.socket.get('/Games?where={"status":{"contains":"open"}}',function(resData,jwres){
+        pageData.games = resData;
+        pageData.availGames = [];
+        $('#gameList').html('<h2>Available Games</h2>');
+        $.each(pageData.games, function(index,value){
+            arr = jQuery.grep(pageData.activeusers, function( n, i ) {
+                if (n == value.hostedBy && n != pageData.userID){
+                    pageData.availGames.push(value);
+                }
+            });
+
+
+        })
+        $.each(pageData.availGames, function(index,value){
+            arr = jQuery.grep(pageData.users, function( n, i ) {
+                if (n.id == value.hostedBy){
+                    value.hostname = n.name;
+                    value.player1 = n.id;
+                    $('#gameList').append('<div id="openGame_'+value.player1+'_'+value.id+'_'+index+'" class="openGame">'+value.hostname+'\'s Game</div>');
+//                    pageData.availGames.push(value);
+                }
+            });
+        });
+        $('.openGame').click(function(){
+            var res = this.id.split("_");
+            console.log(res);
+            //update game to remove open status - add player 2
+            pageData.player1 = pageData.userData.name;
+            pageData.player2 = pageData.availGames[res[3]].player1Name;
+            pageData.availGames[res[3]].player2 = parseInt(pageData.userID);
+            pageData.activeGame = pageData.availGames[res[3]];
+            io.socket.post('/Games/update/'+res[2], {
+                player2: pageData.userID,
+                player1: res[1],
+                player1Name:pageData.availGames[res[3]].player1Name,
+                player2Name:pageData.userData.name,
+                play1deck: pageData.availGames[res[3]].play1deck,
+                play2deck: pageData.availGames[res[3]].play2deck,
+                status: 'starting'
+            }, function (resData) {
+                //resume operation
+                //load Deck2
+                nextCard();
+            });
+
+        })
+    });
+}
+function joinGame(){
+
+}
+
+
+function showJoinGame(){
+    getOpenGames();
+}
+function hostGame(){
+    $('#hostGame').css('color','#CCC');
+
+    pageData.player = 1;
+
+    //Create Deck
+    createDeck();
+
+    //Create Game Space
+    publishDeck();
+
+    //Go to wait for join screen
+    //$('#gameTable').html('');
+
+}
+
+function publishDeck(){
+    io.socket.post('/Games/create/', {
+        fulldeck: pageData.fulldeck,
+        play1deck: pageData.play1deck,
+        play2deck: pageData.play2deck,
+        hostedBy: pageData.userID,
+        player1Name:pageData.userData.name,
+        status: 'open'
+    }, function (resData) {
+        //resume operation
+        pageData.activeGame = resData;
+    });
+}
+
+function createDeck(){
+    var fulldeck = [];
+    $('#gameTable').html('');
+    //suites
+    var i = 1;
+    while (i < 5) {
+        var x = 1;
+        while(x < 14){
+            fulldeck.push("s"+i+"_"+x);
+            x++;
+        }
+        i++;
+    }
+    pageData.fulldeck = fulldeck.slice(0);
+    pageData.play1deck = shuffle(fulldeck);
+    var half_length = Math.ceil(pageData.play1deck.length / 2);
+    pageData.play2deck = pageData.play1deck.splice(0,half_length);
+
+
+}
+
+function nextCard(){
+    whichDeck();
+    show1 = pageData.mydeck;
+    show2 = pageData.theirdeck;
+    $('#gameTable').html('').removeClass('hideClass');
+    $('#gameTable').append('<div class="cardCont"><div class="flip isplayer">'+pageData.player1+' '+$(show1).length+' Cards<div class="cardf"><div class="face front card back1"></div><div class="face back card '+show1[0]+'"></div></div></div></div><div class="cardCont"><div class="flip isopponent">'+pageData.player2+' '+$(show2).length+' Cards<div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div>');
+
+    $('.isplayer').click(function(){
+        if ($(this).find('.cardf').hasClass('flipped')){
+            $(this).find('.cardf').removeClass('flipped');
+        } else {
+            $(this).find('.cardf').addClass('flipped');
+        }
+        checkScore();
+        io.socket.post('/Games/update/'+pageData.activeGame.id, {
+            status: 'playing'
+        }, function (resData) {
+            //resume operation
+            //load Deck2
+            //nextCard(pageData.activeGame.play2deck,pageData.activeGame.play1deck);
+        });
+        return false;
+    });
+}
+
+function showDeck(deck){
+    $('#gameTable').html('').removeClass('hideClass');
+    $.each(deck,function(index,value){
+
+        /*
+         <div class="flipper"><div class="front"></div><div class="back"></div></div>
+         */
+        $('#gameTable').append('<div class="cardCont"><div class="flip"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+value+'"></div></div></div></div>');
+    })
+    $('.flip').click(function(){
+        if ($(this).find('.cardf').hasClass('flipped')){
+            $(this).find('.cardf').removeClass('flipped');
+        } else {
+            $(this).find('.cardf').addClass('flipped');
+        }
+        return false;
+    });
+    //$.each(pageData.play2deck,function(index,value){
+    //    $('#gameTable').append('<div class="'+value+'"></div>');
+    //})
+}
+
+function changeCard (cid,card){
+    $('#'+cid).removeClass();
+    $('#'+cid).addClass(card);
+}
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}

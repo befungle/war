@@ -1,0 +1,245 @@
+button {
+    border:1px solid #000;
+    padding:5px;
+    margin:5px;
+}
+.hideClass {
+    display: none;
+}
+#gameTable{
+    min-height: 400px;
+    border:1px solid #000;
+
+}
+#gameList{
+    border:1px solid #000;
+}
+#sideBar{
+    min-height: 400px;
+    border:1px solid #000;
+}
+#showCard1{
+    /*width: 110px;*/
+    /*height: 150px;*/
+    /*background: url('/images/HrCards.png') -120px 0;*/
+
+}
+/* Spaids */
+.s1_1 {
+    background: url('/images/HrCards.png') -116px 0;
+}
+.s1_2 {
+    background: url('/images/HrCards.png') -232px 0;
+}
+.s1_3 {
+    background: url('/images/HrCards.png') -350px 0;
+}
+.s1_4 {
+    background: url('/images/HrCards.png') -466px 0;
+}
+.s1_5 {
+    background: url('/images/HrCards.png') -582px 0;
+}
+.s1_6 {
+    background: url('/images/HrCards.png') -699px 0;
+}
+.s1_7 {
+    background: url('/images/HrCards.png') -816px 0;
+}
+.s1_8 {
+    background: url('/images/HrCards.png') -932px 0;
+}
+.s1_9 {
+    background: url('/images/HrCards.png') -1049px 0;
+}
+.s1_10 {
+    background: url('/images/HrCards.png') -1166px 0;
+}
+.s1_11 {
+    background: url('/images/HrCards.png') -1282px 0;
+}
+.s1_12 {
+    background: url('/images/HrCards.png') -1399px 0;
+}
+.s1_13 {
+    background: url('/images/HrCards.png') 0px 0;
+}
+
+
+/* Clubs */
+.s2_1 {
+    background: url('/images/HrCards.png') -116px -160px;
+}
+.s2_2 {
+    background: url('/images/HrCards.png') -232px -160px;
+}
+.s2_3 {
+    background: url('/images/HrCards.png') -350px -160px;
+}
+.s2_4 {
+    background: url('/images/HrCards.png') -466px -160px;
+}
+.s2_5 {
+    background: url('/images/HrCards.png') -582px -160px;
+}
+.s2_6 {
+    background: url('/images/HrCards.png') -699px -160px;
+}
+.s2_7 {
+    background: url('/images/HrCards.png') -816px -160px;
+}
+.s2_8 {
+    background: url('/images/HrCards.png') -932px -160px;
+}
+.s2_9 {
+    background: url('/images/HrCards.png') -1049px -160px;
+}
+.s2_10 {
+    background: url('/images/HrCards.png') -1166px -160px;
+}
+.s2_11 {
+    background: url('/images/HrCards.png') -1282px -160px;
+}
+.s2_12 {
+    background: url('/images/HrCards.png') -1399px -160px;
+}
+.s2_13 {
+    background: url('/images/HrCards.png') 0px -160px;
+}
+
+
+/* Hearts */
+.s3_1 {
+    background: url('/images/HrCards.png') -116px -320px;
+}
+.s3_2 {
+    background: url('/images/HrCards.png') -232px -320px;
+}
+.s3_3 {
+    background: url('/images/HrCards.png') -350px -320px;
+}
+.s3_4 {
+    background: url('/images/HrCards.png') -466px -320px;
+}
+.s3_5 {
+    background: url('/images/HrCards.png') -582px -320px;
+}
+.s3_6 {
+    background: url('/images/HrCards.png') -699px -320px;
+}
+.s3_7 {
+    background: url('/images/HrCards.png') -816px -320px;
+}
+.s3_8 {
+    background: url('/images/HrCards.png') -932px -320px;
+}
+.s3_9 {
+    background: url('/images/HrCards.png') -1049px -320px;
+}
+.s3_10 {
+    background: url('/images/HrCards.png') -1166px -320px;
+}
+.s3_11 {
+    background: url('/images/HrCards.png') -1282px -320px;
+}
+.s3_12 {
+    background: url('/images/HrCards.png') -1399px -320px;
+}
+.s3_13 {
+    background: url('/images/HrCards.png') 0px -320px;
+}
+
+/* Diamands */
+.s4_1 {
+    background: url('/images/HrCards.png') -116px -478px;
+}
+.s4_2 {
+    background: url('/images/HrCards.png') -232px -478px;
+}
+.s4_3 {
+    background: url('/images/HrCards.png') -350px -478px;
+}
+.s4_4 {
+    background: url('/images/HrCards.png') -466px -478px;
+}
+.s4_5 {
+    background: url('/images/HrCards.png') -582px -478px;
+}
+.s4_6 {
+    background: url('/images/HrCards.png') -699px -478px;
+}
+.s4_7 {
+    background: url('/images/HrCards.png') -816px -478px;
+}
+.s4_8 {
+    background: url('/images/HrCards.png') -932px -478px;
+}
+.s4_9 {
+    background: url('/images/HrCards.png') -1049px -478px;
+}
+.s4_10 {
+    background: url('/images/HrCards.png') -1166px -478px;
+}
+.s4_11 {
+    background: url('/images/HrCards.png') -1282px -478px;
+}
+.s4_12 {
+    background: url('/images/HrCards.png') -1399px -478px;
+}
+.s4_13 {
+    background: url('/images/HrCards.png') 0px -478px;
+}
+.card {
+    width: 101px;
+    height: 141px;
+    /*margin:5px;*/;
+    /*border-radius: 8px;*/
+    box-shadow: 3px 3px 5px grey;
+}
+.cardCont {
+    float: left;
+    margin:5px;
+}
+.back1 {
+    background: url('/images/back1.png') ;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.flip {
+    -webkit-perspective: 800;
+    width: 100px;
+    height: 139px;
+    position: relative;
+    /*margin: 50px auto;*/
+}
+.flip .cardf.flipped {
+    -webkit-transform: rotatey(-180deg);
+}
+.flip .cardf {
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
+}
+.flip .cardf .face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-backface-visibility: hidden ;
+    z-index: 2;
+    font-family: Georgia;
+    font-size: 3em;
+    text-align: center;
+    line-height: 200px;
+}
+.flip .cardf .front {
+    position: absolute;
+    z-index: 1;
+
+    cursor: pointer;
+}
+.flip .cardf .back {
+    -webkit-transform: rotatey(-180deg);
+
+    cursor: pointer;
+}

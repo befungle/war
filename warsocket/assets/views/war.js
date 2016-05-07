@@ -4,6 +4,7 @@
 jQuery(document).ready(function() {
     getOpenGames();
     pageData.activeGame = 0;
+    pageData.war = [];
     io.socket.on('games', function (resData) {
         if (resData.verb == 'updated') {
             getOpenGames();
@@ -60,13 +61,13 @@ function checkScore(){
         });
         if (parseInt(pageData.opponentScore)>parseInt(pageData.playerScore)){
             //opponent Wins
-            $('.isplayer').css('opacity','.2');
+            $('.isplayer').css('opacity','.5');
             recordScore('them');
 
 
         } else if (parseInt(pageData.playerScore)>parseInt(pageData.opponentScore)){
             //player Wins
-            $('.isopponent').css('opacity','.2');
+            $('.isopponent').css('opacity','.5');
             recordScore('me');
         } else {
             //Tie
@@ -88,6 +89,10 @@ function recordScore(winner){
             var length = pageData.activeGame.play1deck.length;
             pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
 
+            //Add War Bounty
+            pageData.activeGame.play1deck = $.merge(pageData.activeGame.play1deck,pageData.war);
+            pageData.war = [];
+
 
         } else {
             pageData.activeGame.play2deck.push(pageData.activeGame.play1deck[0]);
@@ -97,6 +102,9 @@ function recordScore(winner){
             pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
             var length = pageData.activeGame.play2deck.length;
             pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+
+            pageData.activeGame.play2deck = $.merge(pageData.activeGame.play2deck,pageData.war);
+            pageData.war = [];
         }
 
     } else if (winner == 'them') {
@@ -108,6 +116,9 @@ function recordScore(winner){
             pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
             var length = pageData.activeGame.play2deck.length;
             pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+
+            pageData.activeGame.play2deck = $.merge(pageData.activeGame.play2deck,pageData.war);
+            pageData.war = [];
         } else {
             pageData.activeGame.play1deck.push(pageData.activeGame.play2deck[0]);
             var length = pageData.activeGame.play2deck.length;
@@ -116,18 +127,92 @@ function recordScore(winner){
             pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
             var length = pageData.activeGame.play1deck.length;
             pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+
+            pageData.activeGame.play1deck = $.merge(pageData.activeGame.play1deck,pageData.war);
+            pageData.war = [];
         }
     } else {
-        pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
+        //pageData.war =[];
+
         var length = pageData.activeGame.play1deck.length;
-        pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
-        pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
-        var length = pageData.activeGame.play2deck.length;
-        pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
+        var length2 = pageData.activeGame.play2deck.length;
+        if (length < 5){
+
+            $.each(pageData.activeGame.play1deck,function(index,value){
+                var lastCard = length-1;
+                if (index != lastCard){
+                    pageData.war.push(value);
+                } else {
+                    pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(length,length);
+                }
+
+            });
+
+
+        } else {
+            //Deck One Anti
+            pageData.war.push(pageData.activeGame.play1deck[0]);
+            pageData.war.push(pageData.activeGame.play1deck[1]);
+            pageData.war.push(pageData.activeGame.play1deck[2]);
+            pageData.war.push(pageData.activeGame.play1deck[3]);
+            var length = pageData.activeGame.play1deck.length;
+            pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(4,length);
+        }
+
+        if (length2 < 5){
+            $.each(pageData.activeGame.play2deck,function(index,value){
+                var lastCard = length-1;
+                if (index != lastCard){
+                    pageData.war.push(value);
+                } else {
+                    pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(length,length);
+                }
+
+            });
+        } else {
+            //Deck Two Anti
+            pageData.war.push(pageData.activeGame.play2deck[0]);
+            pageData.war.push(pageData.activeGame.play2deck[1]);
+            pageData.war.push(pageData.activeGame.play2deck[2]);
+            pageData.war.push(pageData.activeGame.play2deck[3]);
+            var length2 = pageData.activeGame.play2deck.length;
+            pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(4,length2);
+        }
+
+
+
+
+
+        //
+        //
+
+                //Push and loop - not WAR rules
+        //pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
+        //var length = pageData.activeGame.play1deck.length;
+        //pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
+        //pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
+        //var length = pageData.activeGame.play2deck.length;
+        //pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
     }
 
+    if (pageData.activeGame.play1deck.length == 0 ){
+        setTimeout("showWin(1)",1500);
+    } else if (pageData.activeGame.play2deck.length == 0){
+        setTimeout("showWin(2)",1500);
+    } else {
+        setTimeout("nextCard()",1500);
+    }
 
-    setTimeout("nextCard()",1000);
+}
+function showWin(winner){
+    if (pageData.mydeckID == winner){
+        $('.isopponent').css('border','1px solid red');
+        $('.isplayer').css('opacity','1');
+    } else {
+        $('.isplayer').css('border','1px solid red');
+        $('.isopponent').css('opacity','1');
+
+    }
 }
 function whichDeck(){
     if (pageData.activeGame.player1 == pageData.userID){
@@ -258,7 +343,12 @@ function nextCard(){
     show1 = pageData.mydeck;
     show2 = pageData.theirdeck;
     $('#gameTable').html('').removeClass('hideClass');
+    $('#gameTable').append('<div id="warChest" class="row"></div>');
     $('#gameTable').append('<div class="cardCont"><div class="flip isplayer">'+pageData.player1+' '+$(show1).length+' Cards<div class="cardf"><div class="face front card back1"></div><div class="face back card '+show1[0]+'"></div></div></div></div><div class="cardCont"><div class="flip isopponent">'+pageData.player2+' '+$(show2).length+' Cards<div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div>');
+
+    if (pageData.war.length > 0){
+        $('#warChest').html('WAR DECLARED - Cards at Stake: '+pageData.war.length);
+    }
 
     $('.isplayer').click(function(){
         if ($(this).find('.cardf').hasClass('flipped')){

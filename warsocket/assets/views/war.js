@@ -213,6 +213,8 @@ function showWin(winner){
         $('.isopponent').css('opacity','1');
 
     }
+    $('#gameList').show();
+    $('#gameMenu').show();
 }
 function whichDeck(){
     if (pageData.activeGame.player1 == pageData.userID){
@@ -339,12 +341,17 @@ function createDeck(){
 }
 
 function nextCard(){
+    $('#gameList').hide();
+    $('#gameMenu').hide();
+
     whichDeck();
     show1 = pageData.mydeck;
     show2 = pageData.theirdeck;
     $('#gameTable').html('').removeClass('hideClass');
     $('#gameTable').append('<div id="warChest" class="row"></div>');
-    $('#gameTable').append('<div class="cardCont"><div class="flip isplayer">'+pageData.player1+' '+$(show1).length+' Cards<div class="cardf"><div class="face front card back1"></div><div class="face back card '+show1[0]+'"></div></div></div></div><div class="cardCont"><div class="flip isopponent">'+pageData.player2+' '+$(show2).length+' Cards<div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div>');
+    $('#gameTable').append('<div class="cardCont"><div class="flip isplayer"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show1[0]+'"></div></div></div></div>');
+    $('#gameTable').append('<div class="cardCont"><div class="flip isopponent"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div><div id="score">'+pageData.player1+' '+$(show1).length+' Cards<br>'+pageData.player2+' '+$(show2).length+' Cards</div> ')
+    //
 
     if (pageData.war.length > 0){
         $('#warChest').html('WAR DECLARED - Cards at Stake: '+pageData.war.length);

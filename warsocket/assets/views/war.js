@@ -256,6 +256,9 @@ function getOpenGames(){
                 }
             });
         });
+        if (pageData.availGames.length == 0){
+            $('#gameList').append('Sorry, there are no available games in your area at this time.');
+        }
         $('.openGame').click(function(){
             var res = this.id.split("_");
             console.log(res);
@@ -281,8 +284,12 @@ function getOpenGames(){
         })
     });
 }
-function joinGame(){
 
+$('#joinGame').click(function(){
+   joinGame();
+});
+function joinGame(){
+    $('#gameList').show();
 }
 
 
@@ -348,9 +355,11 @@ function nextCard(){
     show1 = pageData.mydeck;
     show2 = pageData.theirdeck;
     $('#gameTable').html('').removeClass('hideClass');
+    $('#gameTable').append('<div id="vs" class="row"><div class="columns large-4 small-4 medium-4">'+pageData.player1+'</div><div class="columns large-4 small-4 medium-4">VS</div><div class="columns large-4 small-4 medium-4">'+pageData.player2+'</div></div>');
+    $('#gameTable').append('<div id="score" class="row"><div class="columns large-4 small-4 medium-4">'+$(show1).length+'</div><div class="columns large-4 small-4 medium-4">TO</div><div class="columns large-4 small-4 medium-4">'+$(show2).length+'</div></div>');
     $('#gameTable').append('<div id="warChest" class="row"></div>');
     $('#gameTable').append('<div class="cardCont"><div class="flip isplayer"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show1[0]+'"></div></div></div></div>');
-    $('#gameTable').append('<div class="cardCont"><div class="flip isopponent"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div><div id="score">'+pageData.player1+' '+$(show1).length+' Cards<br>'+pageData.player2+' '+$(show2).length+' Cards</div> ')
+    $('#gameTable').append('<div class="cardCont"><div class="flip isopponent"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div>')
     //
 
     if (pageData.war.length > 0){
@@ -358,6 +367,7 @@ function nextCard(){
     }
 
     $('.isplayer').click(function(){
+        $('.isplayer').unbind('click');
         if ($(this).find('.cardf').hasClass('flipped')){
             $(this).find('.cardf').removeClass('flipped');
         } else {
@@ -371,6 +381,7 @@ function nextCard(){
             //load Deck2
             //nextCard(pageData.activeGame.play2deck,pageData.activeGame.play1deck);
         });
+
         return false;
     });
 }

@@ -102,7 +102,7 @@ $('#deregister').click(function(){
     deregister();
 });
 
-$('#playerName').focusout(function() {
+$('#playerButton').click(function() {
     $('#debugmessage').prepend('Name Entered: '+$('#playerName').val()+'<br>');
     //Update Client Name
     io.socket.post('/Users/update/'+pageData.userID, {

@@ -329,7 +329,6 @@ h1,h2{
 .flip .cardf .front {
     position: absolute;
     z-index: 1;
-
     cursor: pointer;
 }
 .flip .cardf .back {

@@ -66,7 +66,8 @@ function checkScore() {
 
         } else if (parseInt(pageData.playerScore) > parseInt(pageData.opponentScore)) {
             //player Wins
-            $('.isopponent div .back').html('<img src="/images/dead.png">');
+            setTimeout("$('.isopponent div .back').html('<img src=\"/images/dead.png\">')",500);
+
             recordScore('me');
         } else {
             //Tie

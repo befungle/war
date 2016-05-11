@@ -25,9 +25,7 @@ jQuery(document).ready(function() {
                 $('.isopponent').find('.cardf').addClass('flipped');
             }
             checkScore();
-            //nextCard(resData.data.play1deck,resData.data.play2deck);
         }
-        //console.log(resData);
 
     });
     io.socket.on('games', function (resData) {

@@ -375,7 +375,10 @@ function nextCard(){
     //
 
     if (pageData.war.length > 0){
-        $('#warChest').html('WAR DECLARED - Cards at Stake: '+pageData.war.length);
+        $('#score').css('font-size','2em');
+        $('#warChest').html('WAR DECLARED!!!! <Br> Cards at Stake: '+pageData.war.length);
+    } else {
+        $('#score').css('font-size','4em');
     }
 
     $('.isplayer').click(function(){

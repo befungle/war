@@ -30,7 +30,10 @@ jQuery(document).ready(function(){
         pageData.userID = 'RA_'+randID;
         createClient();
     }
-    addToHomescreen();
+    addToHomescreen({
+        skipFirstVisit: false,
+        maxDisplayCount: 5
+    });
 });
 
 function createClient(){

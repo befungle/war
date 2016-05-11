@@ -9,7 +9,6 @@ jQuery(document).ready(function () {
     io.socket.on('users', function (resData) {
         if (resData.verb == 'updated') {
             getUsers();
-            //console.log(resData);
         }
 
     });

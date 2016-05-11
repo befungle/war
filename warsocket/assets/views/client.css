@@ -12,10 +12,11 @@
 }
 
 body {
-    background-color: #FFF;
+    background-color: #038e10;
     color: #000;
     font-family: "DINNextLTProMedium","Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
     text-align: center;
+    margin:1%;
 }
 
 button {
@@ -24,10 +25,11 @@ button {
     margin:5px;
     background-color: #550000;
     color:#FFF;
-    font-size: 26px;
+    font-size: 2em;
+    width: 90%;
 }
 input[type="text"]{
-    font-size: 20px;
+    font-size: 1.8em;
     border:1px solid #000;
 }
 h1,h2{
@@ -37,12 +39,16 @@ h1,h2{
 .hideClass {
     display: none;
 }
+#warLogo{
+    width: 70%;
+    height: auto;
+}
 #clientRegistration{
     margin-top:50px;
     line-height: 30px;
 }
 #score{
-    font-size: small;
+    font-size: .8em;
 }
 #debugmessage {
     display:none;
@@ -73,196 +79,203 @@ h1,h2{
 }
 /* Spaids */
 .s1_1 {
-    background: url('/images/HrCards.png') -116px 0;
+    background: url('/images/deck1/s1_1.png');
 }
 .s1_2 {
-    background: url('/images/HrCards.png') -232px 0;
+    background: url('/images/deck1/s1_2.png');
 }
 .s1_3 {
-    background: url('/images/HrCards.png') -350px 0;
+    background: url('/images/deck1/s1_3.png');
 }
 .s1_4 {
-    background: url('/images/HrCards.png') -466px 0;
+    background: url('/images/deck1/s1_4.png');
 }
 .s1_5 {
-    background: url('/images/HrCards.png') -582px 0;
+    background: url('/images/deck1/s1_5.png');
 }
 .s1_6 {
-    background: url('/images/HrCards.png') -699px 0;
+    background: url('/images/deck1/s1_6.png');
 }
 .s1_7 {
-    background: url('/images/HrCards.png') -816px 0;
+    background: url('/images/deck1/s1_7.png');
 }
 .s1_8 {
-    background: url('/images/HrCards.png') -932px 0;
+    background: url('/images/deck1/s1_8.png');
 }
 .s1_9 {
-    background: url('/images/HrCards.png') -1049px 0;
+    background: url('/images/deck1/s1_9.png');
 }
 .s1_10 {
-    background: url('/images/HrCards.png') -1166px 0;
+    background: url('/images/deck1/s1_10.png');
 }
 .s1_11 {
-    background: url('/images/HrCards.png') -1282px 0;
+    background: url('/images/deck1/s1_11.png');
 }
 .s1_12 {
-    background: url('/images/HrCards.png') -1399px 0;
+    background: url('/images/deck1/s1_12.png');
 }
 .s1_13 {
-    background: url('/images/HrCards.png') 0px 0;
+    background: url('/images/deck1/s1_13.png');
 }
 
 
 /* Clubs */
 .s2_1 {
-    background: url('/images/HrCards.png') -116px -160px;
+    background: url('/images/deck1/s2_1.png');
 }
 .s2_2 {
-    background: url('/images/HrCards.png') -232px -160px;
+    background: url('/images/deck1/s2_2.png');
 }
 .s2_3 {
-    background: url('/images/HrCards.png') -350px -160px;
+    background: url('/images/deck1/s2_3.png');
 }
 .s2_4 {
-    background: url('/images/HrCards.png') -466px -160px;
+    background: url('/images/deck1/s2_4.png');
 }
 .s2_5 {
-    background: url('/images/HrCards.png') -582px -160px;
+    background: url('/images/deck1/s2_5.png');
 }
 .s2_6 {
-    background: url('/images/HrCards.png') -699px -160px;
+    background: url('/images/deck1/s2_6.png');
 }
 .s2_7 {
-    background: url('/images/HrCards.png') -816px -160px;
+    background: url('/images/deck1/s2_7.png');
 }
 .s2_8 {
-    background: url('/images/HrCards.png') -932px -160px;
+    background: url('/images/deck1/s2_8.png');
 }
 .s2_9 {
-    background: url('/images/HrCards.png') -1049px -160px;
+    background: url('/images/deck1/s2_9.png');
 }
 .s2_10 {
-    background: url('/images/HrCards.png') -1166px -160px;
+    background: url('/images/deck1/s2_10.png');
 }
 .s2_11 {
-    background: url('/images/HrCards.png') -1282px -160px;
+    background: url('/images/deck1/s2_11.png');
 }
 .s2_12 {
-    background: url('/images/HrCards.png') -1399px -160px;
+    background: url('/images/deck1/s2_12.png');
 }
 .s2_13 {
-    background: url('/images/HrCards.png') 0px -160px;
+    background: url('/images/deck1/s2_13.png');
 }
 
 
 /* Hearts */
 .s3_1 {
-    background: url('/images/HrCards.png') -116px -320px;
+    background: url('/images/deck1/s3_1.png');
 }
 .s3_2 {
-    background: url('/images/HrCards.png') -232px -320px;
+    background: url('/images/deck1/s3_2.png');
 }
 .s3_3 {
-    background: url('/images/HrCards.png') -350px -320px;
+    background: url('/images/deck1/s3_3.png');
 }
 .s3_4 {
-    background: url('/images/HrCards.png') -466px -320px;
+    background: url('/images/deck1/s3_4.png');
 }
 .s3_5 {
-    background: url('/images/HrCards.png') -582px -320px;
+    background: url('/images/deck1/s3_5.png');
 }
 .s3_6 {
-    background: url('/images/HrCards.png') -699px -320px;
+    background: url('/images/deck1/s3_6.png');
 }
 .s3_7 {
-    background: url('/images/HrCards.png') -816px -320px;
+    background: url('/images/deck1/s3_7.png');
 }
 .s3_8 {
-    background: url('/images/HrCards.png') -932px -320px;
+    background: url('/images/deck1/s3_8.png');
 }
 .s3_9 {
-    background: url('/images/HrCards.png') -1049px -320px;
+    background: url('/images/deck1/s3_9.png');
 }
 .s3_10 {
-    background: url('/images/HrCards.png') -1166px -320px;
+    background: url('/images/deck1/s3_10.png');
 }
 .s3_11 {
-    background: url('/images/HrCards.png') -1282px -320px;
+    background: url('/images/deck1/s3_11.png');
 }
 .s3_12 {
-    background: url('/images/HrCards.png') -1399px -320px;
+    background: url('/images/deck1/s3_12.png');
 }
 .s3_13 {
-    background: url('/images/HrCards.png') 0px -320px;
+    background: url('/images/deck1/s3_13.png');
 }
 
 /* Diamands */
 .s4_1 {
-    background: url('/images/HrCards.png') -116px -478px;
+    background: url('/images/deck1/s4_1.png');
 }
 .s4_2 {
-    background: url('/images/HrCards.png') -232px -478px;
+    background: url('/images/deck1/s4_2.png');
 }
 .s4_3 {
-    background: url('/images/HrCards.png') -350px -478px;
+    background: url('/images/deck1/s4_3.png');
 }
 .s4_4 {
-    background: url('/images/HrCards.png') -466px -478px;
+    background: url('/images/deck1/s4_4.png');
 }
 .s4_5 {
-    background: url('/images/HrCards.png') -582px -478px;
+    background: url('/images/deck1/s4_5.png');
 }
 .s4_6 {
-    background: url('/images/HrCards.png') -699px -478px;
+    background: url('/images/deck1/s4_6.png');
 }
 .s4_7 {
-    background: url('/images/HrCards.png') -816px -478px;
+    background: url('/images/deck1/s4_7.png');
 }
 .s4_8 {
-    background: url('/images/HrCards.png') -932px -478px;
+    background: url('/images/deck1/s4_8.png');
 }
 .s4_9 {
-    background: url('/images/HrCards.png') -1049px -478px;
+    background: url('/images/deck1/s4_9.png');
 }
 .s4_10 {
-    background: url('/images/HrCards.png') -1166px -478px;
+    background: url('/images/deck1/s4_10.png');
 }
 .s4_11 {
-    background: url('/images/HrCards.png') -1282px -478px;
+    background: url('/images/deck1/s4_11.png');
 }
 .s4_12 {
-    background: url('/images/HrCards.png') -1399px -478px;
+    background: url('/images/deck1/s4_12.png');
 }
 .s4_13 {
-    background: url('/images/HrCards.png') 0px -478px;
+    background: url('/images/deck1/s4_13.png');
 }
 .card {
     width: 101px;
     height: 141px;
     /*margin:5px;*/;
-    /*border-radius: 8px;*/
+    border-radius: 8px;
+    border:2px solid #000;
     box-shadow: 3px 3px 5px grey;
     zoom:2.79;
     -moz-transform:scale(2.79);
     -moz-transform-origin: 0 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 102%;
 }
 .cardCont {
     float: left;
     margin:5px;
 }
 .back1 {
-    background: url('/images/back1.png') ;
+    background: url('/images/back1.jpg') ;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: 102%;
     zoom:1.5;
     -moz-transform:scale(1.5);
     -moz-transform-origin: 0 0;
 }
 .flip {
     -webkit-perspective: 800;
-    width: 280px;
-    height: 389.5px;
+    width: 200px;
+    height: 274px;
+    width: 70vw;
+    height: 96.2vw;
+
     position: relative;
 
     /*margin: 50px auto;*/
@@ -270,11 +283,13 @@ h1,h2{
 .isopponent{
     width: 38.5px;
     height: 78.5px;
+    width: 20vw;
+    height: 27.4vw;
     position: relative;
     zoom:.5;
     -moz-transform:scale(.5);
     -moz-transform-origin: 2px 2px;
-    display:none;
+    /*display:none;*/
 }
 .flip .cardf.flipped {
     -webkit-transform: rotatey(-180deg);

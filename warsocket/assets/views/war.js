@@ -1,6 +1,7 @@
 /**
  * Created by Steven Burns on 5/5/16.
  * War scripts
+ * Testing Auto Deploy
  */
 jQuery(document).ready(function () {
     getOpenGames();

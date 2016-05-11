@@ -395,9 +395,7 @@ function showDeck(deck){
         }
         return false;
     });
-    //$.each(pageData.play2deck,function(index,value){
-    //    $('#gameTable').append('<div class="'+value+'"></div>');
-    //})
+
 }
 
 function changeCard (cid,card){

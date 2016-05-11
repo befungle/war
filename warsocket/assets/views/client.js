@@ -133,7 +133,7 @@ function getUsers(){
             var n = Date.now();
             if (this.lastactive){
                 var active = n-this.lastactive;
-                if (this.name != '' && active < 1000){
+                if (this.name != '' && active < 2000){
                     pageData.activeusers.push(this.id);
                     $('#players').append('<div class="columns large-12 medium-12 small-12">'+this.id+': '+this.name+' ('+active+')</div>');
                 }

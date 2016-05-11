@@ -1,5 +1,6 @@
 /**
  * Created by Steven Burns on 5/5/16.
+ * War scripts
  */
 jQuery(document).ready(function () {
     getOpenGames();

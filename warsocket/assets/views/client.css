@@ -304,7 +304,6 @@ h1,h2{
     zoom:.5;
     -moz-transform:scale(.5);
     -moz-transform-origin: 2px 2px;
-    /*display:none;*/
 }
 .flip .cardf.flipped {
     -webkit-transform: rotatey(-180deg);

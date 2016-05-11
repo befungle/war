@@ -348,6 +348,7 @@ function createDeck(){
 }
 
 function nextCard(){
+    $('#warLogo').css('width','20%');
     $('#gameList').hide();
     $('#gameMenu').hide();
 

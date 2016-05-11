@@ -357,7 +357,18 @@ function nextCard(){
     show2 = pageData.theirdeck;
     $('#gameTable').html('').removeClass('hideClass');
     $('#gameTable').append('<div id="vs" class="row"><div class="columns large-4 small-4 medium-4">'+pageData.player1+'</div><div class="columns large-4 small-4 medium-4">VS</div><div class="columns large-4 small-4 medium-4">'+pageData.player2+'</div></div>');
-    $('#gameTable').append('<div id="score" class="row"><div class="columns large-4 small-4 medium-4">'+$(show1).length+'</div><div class="columns large-4 small-4 medium-4">TO</div><div class="columns large-4 small-4 medium-4">'+$(show2).length+'</div></div>');
+
+    if ($(show1).length>$(show2).length){
+        var show2s = 'loosing';
+        var show1s = 'winning';
+    } else if ($(show1).length == $(show2).length){
+        var show2s = 'winning';
+        var show1s = 'winning';
+    } else {
+        var show2s = 'winning';
+        var show1s = 'loosing';
+    }
+    $('#gameTable').append('<div id="score" class="row"><div class="columns large-4 small-4 medium-4 '+show1s+'">'+$(show1).length+'</div><div class="columns large-4 small-4 medium-4"></div><div class="columns large-4 small-4 medium-4 '+show2s+'">'+$(show2).length+'</div></div>');
     $('#gameTable').append('<div id="warChest" class="row"></div>');
     $('#gameTable').append('<div class="cardCont"><div class="flip isplayer"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show1[0]+'"></div></div></div></div>');
     $('#gameTable').append('<div class="cardCont"><div class="flip isopponent"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+show2[0]+'"></div></div></div></div>')

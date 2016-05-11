@@ -129,7 +129,6 @@ function recordScore(winner){
             pageData.war = [];
         }
     } else {
-        //pageData.war =[];
 
         var length = pageData.activeGame.play1deck.length;
         var length2 = pageData.activeGame.play2deck.length;

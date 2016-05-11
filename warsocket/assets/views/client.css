@@ -81,7 +81,6 @@ h1,h2{
 }
 #gameList{
     display: none;
-    /*border:1px solid #000;*/
 }
 #sideBar{
     min-height: 400px;

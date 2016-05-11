@@ -31,7 +31,6 @@ jQuery(document).ready(function() {
     io.socket.on('games', function (resData) {
         if (resData.verb == 'created') {
             getOpenGames();
-            //console.log(resData);
         }
 
     });

@@ -193,8 +193,11 @@ function showWin(winner) {
     if (pageData.mydeckID == winner) {
         //$('.isopponent').css('border', '1px solid red');
         //$('.isplayer').css('opacity', '1');
+        $('#warChest').html('YOU WON!!!!!');
         setTimeout("$('.isplayer div .back').html('<img src=\"/images/win.png\">')",500);
     } else {
+
+        $('#warChest').html('YOU LOST!!!!!');
         setTimeout("$('.isplayer div .back').html('<img src=\"/images/dead.png\">')",500);
         //$('.isplayer').css('border', '1px solid red');
         //$('.isopponent').css('opacity', '1');

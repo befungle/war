@@ -385,10 +385,6 @@ function nextCard(){
 function showDeck(deck){
     $('#gameTable').html('').removeClass('hideClass');
     $.each(deck,function(index,value){
-
-        /*
-         <div class="flipper"><div class="front"></div><div class="back"></div></div>
-         */
         $('#gameTable').append('<div class="cardCont"><div class="flip"><div class="cardf"><div class="face front card back1"></div><div class="face back card '+value+'"></div></div></div></div>');
     })
     $('.flip').click(function(){

@@ -60,17 +60,18 @@ function checkScore() {
         });
         if (parseInt(pageData.opponentScore) > parseInt(pageData.playerScore)) {
             //opponent Wins
-            $('.isplayer').css('opacity', '.5');
+            setTimeout("$('.isplayer div .back').html('<img src=\"/images/dead.png\">')",500);
             recordScore('them');
 
 
         } else if (parseInt(pageData.playerScore) > parseInt(pageData.opponentScore)) {
             //player Wins
-            $('.isopponent').css('opacity', '.5');
+            $('.isopponent div .back').html('<img src="/images/dead.png">');
             recordScore('me');
         } else {
             //Tie
             recordScore('tie');
+            setTimeout("$('.isplayer div .back').html('<img src=\"/images/tie.png\">')",500);
         }
     } else {
         //Move along Quietly
@@ -189,11 +190,13 @@ function recordScore(winner) {
 }
 function showWin(winner) {
     if (pageData.mydeckID == winner) {
-        $('.isopponent').css('border', '1px solid red');
-        $('.isplayer').css('opacity', '1');
+        //$('.isopponent').css('border', '1px solid red');
+        //$('.isplayer').css('opacity', '1');
+        setTimeout("$('.isplayer div .back').html('<img src=\"/images/win.png\">')",500);
     } else {
-        $('.isplayer').css('border', '1px solid red');
-        $('.isopponent').css('opacity', '1');
+        setTimeout("$('.isplayer div .back').html('<img src=\"/images/dead.png\">')",500);
+        //$('.isplayer').css('border', '1px solid red');
+        //$('.isopponent').css('opacity', '1');
 
     }
     $('#gameList').show();

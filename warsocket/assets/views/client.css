@@ -367,6 +367,12 @@ h1, h2 {
     zoom: .5;
     -moz-transform: scale(.5);
     -moz-transform-origin: 2px 2px;
+
+
+}
+.isopponent .cardf .back{
+    background-size: 392%;
+    background-position: -2px -2px;
 }
 
 .flip .cardf.flipped {
@@ -389,7 +395,7 @@ h1, h2 {
     font-family: Georgia;
     font-size: 3em;
     text-align: center;
-    line-height: 200px;
+    /*line-height: 200px;*/
 }
 
 .flip .cardf .front {

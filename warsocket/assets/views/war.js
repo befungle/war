@@ -174,21 +174,6 @@ function recordScore(winner){
             var length2 = pageData.activeGame.play2deck.length;
             pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(4,length2);
         }
-
-
-
-
-
-        //
-        //
-
-                //Push and loop - not WAR rules
-        //pageData.activeGame.play1deck.push(pageData.activeGame.play1deck[0]);
-        //var length = pageData.activeGame.play1deck.length;
-        //pageData.activeGame.play1deck = pageData.activeGame.play1deck.splice(1,length);
-        //pageData.activeGame.play2deck.push(pageData.activeGame.play2deck[0]);
-        //var length = pageData.activeGame.play2deck.length;
-        //pageData.activeGame.play2deck = pageData.activeGame.play2deck.splice(1,length);
     }
 
     if (pageData.activeGame.play1deck.length == 0 ){
